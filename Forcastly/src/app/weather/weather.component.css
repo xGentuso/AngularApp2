@@ -1,0 +1,38 @@
+.weather-icon {
+  width: 100px;
+  height: auto;
+  margin: 10px 0;
+}
+
+.forecast-container {
+  margin-top: 20px;
+  padding: 10px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forecast {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.forecast-day {
+  background-color: #e3f2fd;
+  padding: 10px;
+  border-radius: 8px;
+  flex: 1;
+  margin: 0 5px;
+  text-align: center;
+  min-width: 120px;
+  max-width: 150px;
+}
+
+@media (max-width: 600px) {
+    .forecast-day {
+        min-width: 80px;
+    }
+}

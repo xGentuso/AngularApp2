@@ -16,12 +16,13 @@ export class WeatherComponent implements OnChanges {
   ngOnChanges() {
     if (this.city) {
       this.weatherService.getWeather(this.city).subscribe({
-        next: data =>  {
-        data.main.temp = data.main.temp - 273.15; // Convert Kelvin to Celsius
-        this.weatherData = data;
-        this.setWeatherImage();
-      }, error: (err: any) => console.error('Error fetching weather data:', err)
-    });
+        next: data => {
+          console.log('Weather Data:', data);
+          this.weatherData = data;
+          this.setWeatherImage();
+        },
+        error: (err: any) => console.error('Error fetching weather data:', err)
+      });
     }
   }
 
@@ -30,5 +31,10 @@ export class WeatherComponent implements OnChanges {
       const iconCode = this.weatherData.weather[0].icon;
       this.weatherImageUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
     }
+  }
+
+  capitalizeCityName(city: string): string {
+    if (!city) return city;
+    return city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
   }
 }
