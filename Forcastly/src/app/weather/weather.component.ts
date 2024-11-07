@@ -16,13 +16,12 @@ export class WeatherComponent implements OnChanges {
   ngOnChanges() {
     if (this.city) {
       this.weatherService.getWeather(this.city).subscribe({
-        next: data => {
-          data.main.temp = data.main.temp - 273.15; // Convert Kelvin to Celsius
-          this.weatherData = data;
-          this.setWeatherImage();
-        },
-        error: error => console.error('Error fetching weather data:', error)
-      });
+        next: data =>  {
+        data.main.temp = data.main.temp - 273.15; // Convert Kelvin to Celsius
+        this.weatherData = data;
+        this.setWeatherImage();
+      }, error: (err: any) => console.error('Error fetching weather data:', err)
+    });
     }
   }
 
