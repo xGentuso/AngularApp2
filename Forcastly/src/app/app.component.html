@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <span>Forecastly</span>
+</mat-toolbar>
+
+<div class="container">
+  <app-search (searchEvent)="onSearch($event)"></app-search>
+  <app-weather [city]="selectedCity"></app-weather>
+</div>
+
+<footer>
+  <p>© 2023 Forecastly. All rights reserved.</p>
+</footer>
+
+

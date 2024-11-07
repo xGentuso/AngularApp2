@@ -1,0 +1,12 @@
+<mat-card *ngIf="weatherData">
+  <mat-card-header>
+    <mat-card-title>Weather in {{ city }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <img [src]="weatherImageUrl" alt="Weather icon" class="weather-icon" />
+    <p><strong>Temperature:</strong> {{ weatherData.main.temp | number:'1.0-2' }}°C</p>
+    <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
+    <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+    <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
+  </mat-card-content>
+</mat-card>
