@@ -1,5 +1,15 @@
 <mat-form-field appearance="fill">
   <mat-label>Enter city name</mat-label>
-  <input matInput [(ngModel)]="city" placeholder="City">
+  <input matInput
+         [formControl]="searchControl"
+         [matAutocomplete]="auto"
+         placeholder="City">
+  <mat-autocomplete #auto="matAutocomplete" 
+                   [displayWith]="displayFn"
+                   (optionSelected)="onOptionSelected($event.option.value)">
+    <mat-option *ngFor="let location of locations" [value]="location">
+      {{location.name}}, {{location.region}}, {{location.country}}
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 <button mat-raised-button color="accent" (click)="getWeather()">Get Weather</button>

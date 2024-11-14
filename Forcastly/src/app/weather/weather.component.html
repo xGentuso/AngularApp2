@@ -1,12 +1,44 @@
-<mat-card *ngIf="weatherData">
-  <mat-card-header>
-    <mat-card-title>Weather in {{ capitalizeCityName(city) }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <img [src]="weatherImageUrl" alt="Weather icon" class="weather-icon" />
-    <p><strong>Temperature:</strong> {{ weatherData.main.temp | number:'1.0-0' }}°C</p>
-    <p><strong>Weather:</strong> {{ weatherData.weather[0].description | titlecase }}</p>
-    <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
-    <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
-  </mat-card-content>
-</mat-card>
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div>
+
+<div class="current-weather" *ngIf="weatherData && !error">
+  <h2>Weather in {{ capitalizeCityName(city) }}</h2>
+  <div class="current-weather-content">
+    <div class="weather-icon-large">
+      <i [class]="getWeatherIconClass(weatherData.condition.text)"></i>
+    </div>
+    <div class="current-weather-info">
+      <div class="current-date">{{ getCurrentDate() | date:'EEEE, MMMM d' }}</div>
+      <div class="current-temp">
+        <i class="wi wi-thermometer"></i>
+        {{ weatherData.condition.temperature }}°C
+      </div>
+      <div class="current-condition">
+        <i class="wi wi-day-light-wind"></i>
+        {{ weatherData.condition.text }}
+      </div>
+      <div class="current-humidity">
+        <i class="wi wi-humidity"></i>
+        {{ weatherData.atmosphere.humidity }}%
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="forecast-container" *ngIf="forecastData.length > 0 && !error">
+  <h3>Forecast</h3>
+  <div class="forecast-grid">
+    <div class="forecast-card" *ngFor="let day of forecastData">
+      <div class="date">{{ day.formattedDate | date:'EEE, MMM d' }}</div>
+      <div class="weather-icon">
+        <i [class]="getWeatherIconClass(day.text)"></i>
+      </div>
+      <div class="condition">{{ day.text }}</div>
+      <div class="temperature">
+        <div class="high"><i class="wi wi-thermometer"></i> High: {{ day.high }}°C</div>
+        <div class="low"><i class="wi wi-thermometer-exterior"></i> Low: {{ day.low }}°C</div>
+      </div>
+    </div>
+  </div>
+</div>

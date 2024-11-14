@@ -1,4 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { LocationService } from '../services/location.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -6,18 +9,29 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  city: string = '';
+  searchControl = new FormControl();
+  locations: any[] = [];
   @Output() searchEvent = new EventEmitter<string>();
 
-  getWeather() {
-    if (this.city) {
-      this.searchEvent.emit(this.city);
-    }
+  constructor(private locationService: LocationService) {
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(query => this.locationService.getLocations(query))
+    ).subscribe(results => {
+      this.locations = results;
+    });
   }
 
-  selectedCity: string = '';
+  onOptionSelected(location: any) {
+    this.searchEvent.emit(location.name);
+  }
 
-  onSearch(city: string) {
-    this.selectedCity = city;
+  getWeather() {
+    // Add your weather fetching logic here
+  }
+
+  displayFn(option: any): string {
+    return option ? option.name : '';
   }
 }

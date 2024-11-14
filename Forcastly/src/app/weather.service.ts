@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { YahooWeatherResponse } from '../models/weather.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  apiKey: string = '1d00a2f4f4e4c367ef013910930cf3f6';
-  apiUrl: string = 'https://api.openweathermap.org/data/2.5/weather';
+  private apiUrl = 'https://yahoo-weather5.p.rapidapi.com/weather';
+  private rapidApiKey = '20a5449258msh75caf71cc4d39dap1ea7bajsn7b82d1d5e657';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getWeather(city: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}?q=${city}&appid=${this.apiKey}&units=metric`).pipe(
-      tap(response => console.log('Weather API Response:', response))
+  getForecast(city: string): Observable<YahooWeatherResponse> {
+    const headers = new HttpHeaders({
+      'X-RapidAPI-Key': this.rapidApiKey,
+      'X-RapidAPI-Host': 'yahoo-weather5.p.rapidapi.com'
+    });
+
+    return this.http.get<YahooWeatherResponse>(`${this.apiUrl}?location=${city}&format=json&u=c`, { headers }).pipe(
+      tap(response => console.log('Raw API Response:', response))
     );
   }
 }
