@@ -94,108 +94,163 @@
 }
 
 .current-weather {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  color: white;
+  margin: 0 auto 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+}
+
+.current-weather h2 {
+  font-size: 2.2em;
+  font-weight: 400;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .current-weather-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
+  text-align: center;
+  gap: 20px;
 }
 
 .weather-icon-large {
-  font-size: 4em;
-  color: #1976d2;
-  text-align: center;
-  margin: 20px 0;
-}
-
-.weather-icon-large i {
-  display: inline-block;
-}
-
-.current-weather-info {
-  text-align: left;
-}
-
-.current-date {
-  font-size: 1.2em;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.current-temp, .current-condition, .current-humidity {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.2em;
+  font-size: 6em;
+  color: white;
   margin: 10px 0;
 }
 
-.current-temp i, .current-condition i, .current-humidity i {
-  width: 25px;
-  text-align: center;
+.current-weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
 }
 
-@media (max-width: 600px) {
+.current-date {
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.current-temp {
+  font-size: 3em;
+  font-weight: 400;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.current-condition, .current-humidity {
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+}
+
+/* Forecast Section */
+.forecast-container {
+  margin-top: 40px;
+}
+
+.forecast-container h3 {
+  color: white;
+  font-size: 2em;
+  font-weight: 400;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.forecast-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-card:hover {
+  transform: translateY(-5px);
+}
+
+.forecast-card .date {
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-card .weather-icon {
+  font-size: 2.5em;
+  margin: 15px 0;
+}
+
+.forecast-card .condition {
+  font-size: 1.1em;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+.forecast-card .temperature {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.high, .low {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .current-weather-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
   .current-weather-info {
-    text-align: center;
+    align-items: center;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
-.temperature .high, .temperature .low {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin: 5px 0;
+/* Weather Icons Styling */
+.wi {
+  line-height: 1.5;
 }
 
-/* Optional: Add animations */
-.weather-icon i, .weather-icon-large i {
-  transition: transform 0.3s ease;
-}
-
-.weather-icon i:hover, .weather-icon-large i:hover {
-  transform: scale(1.1);
-}
-
-/* Optional: Add different colors for different weather conditions */
-.wi-day-sunny {
-  color: #ff9800;
-}
-
-.wi-rain {
-  color: #2196f3;
-}
-
-.wi-snow {
-  color: #90a4ae;
-}
-
-.wi-thunderstorm {
-  color: #607d8b;
-}
-
-.wi-cloudy, .wi-day-cloudy {
-  color: #78909c;
-}
-
-.wi-humidity {
-  color: #03a9f4;
-}
-
-.wi-thermometer, .wi-thermometer-exterior {
-  color: #f44336;
-}
+/* Custom colors for different weather conditions */
+.wi-day-sunny { color: #FFE162; }
+.wi-rain { color: #62D9FF; }
+.wi-snow { color: #FFFFFF; }
+.wi-thunderstorm { color: #FFD23F; }
+.wi-cloudy { color: #FFFFFF; }
+.wi-humidity { color: #99EEFF; }

@@ -1,9 +1,15 @@
-<mat-form-field appearance="fill">
-  <mat-label>Enter city name</mat-label>
-  <input matInput
-         [formControl]="searchControl"
-         [matAutocomplete]="auto"
-         placeholder="City">
+<div class="search-wrapper">
+  <div class="search-box">
+    <i class="wi wi-day-sunny search-icon"></i>
+    <input matInput
+           [formControl]="searchControl"
+           [matAutocomplete]="auto"
+           placeholder="Search for a city..."
+           class="search-input">
+    <button (click)="getWeather()" class="search-button">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
   <mat-autocomplete #auto="matAutocomplete" 
                    [displayWith]="displayFn"
                    (optionSelected)="onOptionSelected($event.option.value)">
@@ -11,5 +17,4 @@
       {{location.name}}, {{location.region}}, {{location.country}}
     </mat-option>
   </mat-autocomplete>
-</mat-form-field>
-<button mat-raised-button color="accent" (click)="getWeather()">Get Weather</button>
+</div>

@@ -2,9 +2,48 @@
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+.mat-mdc-autocomplete-panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 12px !important;
+  margin-top: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.mat-mdc-option {
+  color: #333 !important;
+  font-weight: 400 !important;
+  font-size: 1.1em !important;
+}
+
+.mat-mdc-option:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: transparent !important;
+}
+
+.mat-mdc-form-field:hover .mdc-notched-outline__leading,
+.mat-mdc-form-field:hover .mdc-notched-outline__notch,
+.mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: transparent !important;
 }
