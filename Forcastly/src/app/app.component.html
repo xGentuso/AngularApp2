@@ -1,10 +1,49 @@
-<mat-toolbar color="primary">
-  <span>Forecastly</span>
-</mat-toolbar>
+<div class="app-layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="brand">
+      <i class="wi wi-day-sunny"></i>
+      <span>Forecastly</span>
+    </div>
+    <ul class="nav-items">
+      <li class="active"><i class="wi wi-day-sunny"></i> Weather</li>
+      <li><i class="fas fa-newspaper"></i> News</li>
+      <li><i class="fas fa-map"></i> Maps</li>
+      <li><i class="fas fa-cog"></i> Settings</li>
+      <li class="logout"><i class="fas fa-sign-out-alt"></i> Logout</li>
+    </ul>
+  </nav>
 
-<div class="container">
-  <app-search (searchEvent)="onSearch($event)"></app-search>
-  <app-weather [city]="selectedCity"></app-weather>
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Top Navigation -->
+    <mat-toolbar>
+      <div class="toolbar-content">
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Current Location</span>
+        </div>
+        
+        <div class="search-section">
+          <app-search (searchEvent)="onSearch($event)"></app-search>
+        </div>
+
+        <div class="user-controls">
+          <button mat-icon-button>
+            <i class="fas fa-bell"></i>
+          </button>
+          <button mat-icon-button>
+            <i class="fas fa-user"></i>
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+
+    <!-- Weather Content -->
+    <div class="container">
+      <app-weather [city]="selectedCity"></app-weather>
+    </div>
+  </div>
 </div>
 
 <footer>

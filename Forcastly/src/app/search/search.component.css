@@ -98,91 +98,93 @@ button:active {
 }
 
 .search-wrapper {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 0 20px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .search-box {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 50px;
-  padding: 8px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.search-box:hover, .search-box:focus-within {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.search-icon {
-  color: white;
-  font-size: 1.5em;
-  margin-right: 15px;
+  height: 40px;
+  padding: 0 8px;
 }
 
 .search-input {
-  flex: 1;
-  background: transparent;
+  background: none;
   border: none;
+  color: white !important;
+  font-size: 0.9rem;
+  font-weight: 300;
+  width: calc(100% - 40px);
+  padding: 8px 8px 8px 12px;
   outline: none;
-  padding: 15px 5px;
-  color: white;
-  font-size: 1.1em;
-  font-weight: 400;
+  caret-color: white;
+}
+
+/* Style for the autocomplete input when it has content */
+::ng-deep .mat-mdc-input-element,
+::ng-deep .mat-mdc-autocomplete-trigger {
+  color: white !important;
+}
+
+/* Style for the autocomplete options */
+::ng-deep .mat-mdc-option {
+  color: #333 !important;
 }
 
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 300;
 }
 
 .search-button {
-  background: white;
-  border: none;
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
-  color: #1e3c72;
-  font-size: 1.2em;
+  opacity: 0.8;
+  position: relative;
+  top: -6px;
+  margin-right: 4px;
 }
 
 .search-button:hover {
-  transform: scale(1.1);
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-button i {
+  font-size: 18px;
+  position: relative;
+  top: -1px;
 }
 
 /* Autocomplete styling */
 ::ng-deep .mat-mdc-autocomplete-panel {
   background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px) !important;
-  border-radius: 15px !important;
-  margin-top: 15px !important;
-  padding: 10px !important;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 12px !important;
+  margin-top: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
 ::ng-deep .mat-mdc-option {
-  color: #1e3c72 !important;
+  color: #333 !important;
   font-size: 1em !important;
-  padding: 12px 20px !important;
-  margin: 5px !important;
-  border-radius: 10px !important;
-  transition: all 0.2s ease !important;
+  padding: 10px 20px !important;
 }
 
 ::ng-deep .mat-mdc-option:hover {
-  background-color: rgba(30, 60, 114, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
 }
 
 /* Hide Material form field elements */
@@ -196,3 +198,22 @@ button:active {
 ::ng-deep .mat-mdc-form-field-underline {
   display: none !important;
 }
+
+/* Optional: Style the autocomplete text if you're using it */
+::ng-deep .mat-autocomplete-panel .mat-option-text {
+  font-weight: 300;
+}
+
+/* Sun icon styling */
+.wi-day-sunny {
+  color: #FFD700;
+  font-size: 1.1rem;
+  opacity: 1;
+  margin-left: 4px;
+  filter: brightness(1.2);
+}
+
+/* Alternative colors you might prefer: */
+/* color: #FDB813; */ /* Warmer yellow */
+/* color: #FFEB3B; */ /* Material yellow */
+/* color: #FFC107; */ /* Amber */

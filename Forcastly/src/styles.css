@@ -47,3 +47,17 @@ body {
 .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
   border-color: transparent !important;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}

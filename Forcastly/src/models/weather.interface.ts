@@ -1,28 +1,21 @@
-export interface YahooWeatherResponse {
-  location: {
-    city: string;
-    country: string;
+export interface OpenWeatherResponse {
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
   };
-  current_observation: {
-    condition: {
-      temperature: number;
-      text: string;
-    };
-    atmosphere: {
-      humidity: number;
-    };
-  };
-  forecasts: Array<{
-    date: number;
-    day: string;
-    high: number;
-    low: number;
-    text: string;
-    formattedDate?: Date;
-  }>;
+  weather: [{
+    main: string;
+    description: string;
+    icon: string;
+  }];
+  visibility: number;
+  name: string;
+  dt: number;
 }
 
 export interface HourForecast {
   time: string;
-  temp_c: number;
+  temp: number;
+  condition: string;
 } 

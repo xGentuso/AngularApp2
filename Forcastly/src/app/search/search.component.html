@@ -1,12 +1,12 @@
 <div class="search-wrapper">
   <div class="search-box">
-    <i class="wi wi-day-sunny search-icon"></i>
+    <i class="wi wi-day-sunny"></i>
     <input matInput
            [formControl]="searchControl"
            [matAutocomplete]="auto"
            placeholder="Search for a city..."
            class="search-input">
-    <button (click)="getWeather()" class="search-button">
+    <button class="search-button" (click)="getWeather()">
       <i class="fas fa-search"></i>
     </button>
   </div>

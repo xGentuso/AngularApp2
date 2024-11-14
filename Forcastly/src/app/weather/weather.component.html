@@ -1,44 +1,101 @@
-<div *ngIf="error" class="error-message">
-  {{ error }}
-</div>
+<div class="main-container">
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
 
-<div class="current-weather" *ngIf="weatherData && !error">
-  <h2>Weather in {{ capitalizeCityName(city) }}</h2>
-  <div class="current-weather-content">
-    <div class="weather-icon-large">
-      <i [class]="getWeatherIconClass(weatherData.condition.text)"></i>
+  <!-- Weather Content -->
+  <div class="weather-container" *ngIf="weatherData; else loading">
+    <!-- Current Weather Card -->
+    <div class="current-weather-card">
+      <div class="weather-icon-temp">
+        <img [src]="weatherData.condition.icon" [alt]="weatherData.condition.text">
+        <h1>{{ weatherData.condition.temperature | number:'1.0-0' }}°C</h1>
+      </div>
+      <div class="weather-info">
+        <h2>{{ weatherData.condition.text }}</h2>
+        <div class="weather-details">
+          <div class="detail-item">
+            <i class="wi wi-humidity"></i>
+            <span>Humidity: {{ weatherData.atmosphere.humidity }}%</span>
+          </div>
+          <div class="detail-item">
+            <i class="wi wi-strong-wind"></i>
+            <span>Wind: {{ weatherData.wind.speed }} km/h</span>
+          </div>
+          <div class="detail-item">
+            <i class="wi wi-barometer"></i>
+            <span>Pressure: {{ weatherData.atmosphere.pressure }} mb</span>
+          </div>
+          <div class="detail-item">
+            <i class="wi wi-raindrops"></i>
+            <span>Precipitation: {{ weatherData.precipitation }} mm</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="current-weather-info">
-      <div class="current-date">{{ getCurrentDate() | date:'EEEE, MMMM d' }}</div>
-      <div class="current-temp">
-        <i class="wi wi-thermometer"></i>
-        {{ weatherData.condition.temperature }}°C
+
+    <!-- Hourly Forecast -->
+    <div class="forecast-card">
+      <h3>Hourly Forecast</h3>
+      <div class="hour-scroll">
+        <div class="hour-item" *ngFor="let hour of hourlyForecast">
+          <span class="time">{{ hour.time }}</span>
+          <img [src]="hour.icon" [alt]="hour.condition">
+          <span class="temp">{{ hour.temp }}°</span>
+          <span class="condition">{{ hour.condition }}</span>
+          <div class="hour-details">
+            <small>Rain: {{ hour.chance_of_rain }}%</small>
+            <small>Wind: {{ hour.wind_kph }} km/h</small>
+          </div>
+        </div>
       </div>
-      <div class="current-condition">
-        <i class="wi wi-day-light-wind"></i>
-        {{ weatherData.condition.text }}
-      </div>
-      <div class="current-humidity">
-        <i class="wi wi-humidity"></i>
-        {{ weatherData.atmosphere.humidity }}%
+    </div>
+
+    <!-- Daily Forecast -->
+    <div class="forecast-card">
+      <h3>3-Day Forecast</h3>
+      <div class="daily-grid">
+        <div class="daily-item" *ngFor="let day of threeDayForecast">
+          <div class="day-header">
+            <h4>{{ day.formattedDate | date:'EEE, MMM d' }}</h4>
+          </div>
+          <div class="day-content">
+            <img [src]="day.icon" [alt]="day.text">
+            <div class="temp-range">
+              <span class="high">{{ day.high }}°</span>
+              <span class="separator">|</span>
+              <span class="low">{{ day.low }}°</span>
+            </div>
+            <div class="condition">{{ day.text }}</div>
+            <div class="day-details">
+              <div class="detail-row">
+                <i class="wi wi-raindrop"></i>
+                <span>{{ day.daily_chance_of_rain }}%</span>
+              </div>
+              <div class="detail-row">
+                <i class="wi wi-strong-wind"></i>
+                <span>{{ day.maxwind_kph }} km/h</span>
+              </div>
+              <div class="detail-row">
+                <i class="wi wi-sunrise"></i>
+                <span>{{ day.sunrise }}</span>
+              </div>
+              <div class="detail-row">
+                <i class="wi wi-sunset"></i>
+                <span>{{ day.sunset }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="forecast-container" *ngIf="forecastData.length > 0 && !error">
-  <h3>Forecast</h3>
-  <div class="forecast-grid">
-    <div class="forecast-card" *ngFor="let day of forecastData">
-      <div class="date">{{ day.formattedDate | date:'EEE, MMM d' }}</div>
-      <div class="weather-icon">
-        <i [class]="getWeatherIconClass(day.text)"></i>
-      </div>
-      <div class="condition">{{ day.text }}</div>
-      <div class="temperature">
-        <div class="high"><i class="wi wi-thermometer"></i> High: {{ day.high }}°C</div>
-        <div class="low"><i class="wi wi-thermometer-exterior"></i> Low: {{ day.low }}°C</div>
-      </div>
+  <!-- Loading Template -->
+  <ng-template #loading>
+    <div class="loading-container">
+      <div class="loading">Loading weather data...</div>
     </div>
-  </div>
+  </ng-template>
 </div>
